@@ -1,10 +1,15 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, render_template
 
 app = Flask(__name__, static_url_path = "")
 
 @app.route("/api/name/<n>")
 def name(n):
   return n + "'s World!"
+
+@app.route("/hello/")
+@app.route("/hello/<s>")
+def hello(s = None):
+    return render_template("template.html", str = s)
 
 @app.route('/')
 def index():
