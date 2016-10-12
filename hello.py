@@ -1,10 +1,14 @@
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, request
 
 app = Flask(__name__, static_url_path = "")
 
 @app.route("/api/name/<n>")
 def name(n):
   return n + "'s World!"
+
+@app.route("/api/setup", methods=["POST"])
+def setup():
+  return request.form["somename"] + " - that's what she said"
 
 @app.route("/hello/")
 @app.route("/hello/<s>")
